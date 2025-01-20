@@ -29,12 +29,13 @@ class DbProvider {
       version: 1,
       onOpen: (db) {},
       onCreate: (Database db, int version) async {
-        await db.execute('''
-        CREATE TABLE Scans(
-       id INTEGER PRIMARY KEY,
-       tipus TEXT,
-       valor TEXT
-       ) 
+        await db.execute(
+        '''
+          CREATE TABLE Scans(
+            id INTEGER PRIMARY KEY,
+            tipus TEXT,
+            valor TEXT
+          ) 
         ''');
       },
     );
@@ -49,8 +50,8 @@ class DbProvider {
 
       final res = await db.rawInsert(
         '''
-        INSERT INTO Scans (id, tipus, valor)
-        VALUES ($id, '$tipus', $valor)
+          INSERT INTO Scans (id, tipus, valor)
+          VALUES ($id, '$tipus', $valor)
         ''');
       return res;
     }
@@ -58,6 +59,7 @@ class DbProvider {
       final db = await database;
 
       final res = await db.insert('Scans', nouScan.toJson());
+      print(res);
       return res;
     }
 
@@ -100,7 +102,8 @@ class DbProvider {
 
   Future<int> deleteAllScans() async {
     final db = await database;
-    final res = await db.rawDelete('''
+    final res = await db.rawDelete(
+    '''
       DELETE FROM Scans
     ''');
     return res;
