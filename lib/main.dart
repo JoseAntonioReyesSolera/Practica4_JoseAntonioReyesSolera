@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qr_scan_joseantonioreyes/providers/scan_list_provider.dart';
 import 'package:qr_scan_joseantonioreyes/providers/ui_provider.dart';
 import 'package:qr_scan_joseantonioreyes/screens/home_screen.dart';
 import 'package:qr_scan_joseantonioreyes/screens/mapa_screen.dart';
 
 void main() => runApp(MultiProvider(
-  providers: [ChangeNotifierProvider(create: (_) => UIProvider())],
+  providers: [
+    ChangeNotifierProvider(create: (_) => UIProvider()),
+    ChangeNotifierProvider(create: (_) => ScanListProvider())
+    ],
   child: MyApp(),
   ));
 
