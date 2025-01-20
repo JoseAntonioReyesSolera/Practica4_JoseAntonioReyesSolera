@@ -30,7 +30,7 @@ class DbProvider {
       onOpen: (db) {},
       onCreate: (Database db, int version) async {
         await db.execute('''
-        CREATE TABLE IF NOT EXISTS Scans(
+        CREATE TABLE Scans(
        id INTEGER PRIMARY KEY,
        tipus TEXT,
        valor TEXT
