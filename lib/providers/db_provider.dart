@@ -18,10 +18,12 @@ class DbProvider {
   }
 
   Future<Database> initDB() async {
+    //Obtenir es Path
     Directory documentDirectory = await getApplicationDocumentsDirectory();
     final path = join(documentDirectory.path, 'Scans.db');
     print(path);
 
+    //Creació de la BBDD
     return await openDatabase(
       path,
       version: 1,
@@ -62,6 +64,58 @@ class DbProvider {
   Future<List<ScanModel>> getAllScans() async {
     final db = await database;
     final res = await db.query('Scans');
-    //return res.isNotEmpty ? res.map(e) => ScanModel.fromJson(e)).toList() : []; //video P4.2.4 / 2:44
-}
+    return res.isNotEmpty ? res.map((e) => ScanModel.fromJson(e)).toList() : [];
+  }
+
+  Future<ScanModel?> getScanById(int id) async {
+    final db = await database;
+    final res = await db.query('Scans', where: 'id = ?', whereArgs: [id]);
+
+    if (res.isNotEmpty) {
+      return ScanModel.fromJson(res.first);
+    }
+    return null;
+  }
+
+  // ----- * ----- * ----- * -----
+  Future<List<ScanModel>> getScansByType(String tipus) async {
+  final db = await database;
+  final res = await db.query(
+    'Scans',
+    where: 'tipus = ?',
+    whereArgs: [tipus],
+  );
+
+  return res.isNotEmpty ? res.map((e) => ScanModel.fromJson(e)).toList() : [];
+  }
+  // ----- * ----- * ----- * -----
+
+  Future<int> updateScan(ScanModel nouScan) async {
+    final db = await database;
+    final res = db.update('Scans', nouScan.toJson(),
+    where: 'id = ?', whereArgs: [nouScan.id]);
+
+    return res;
+  }
+
+  Future<int> deleteAllScans() async {
+    final db = await database;
+    final res = await db.rawDelete('''
+      DELETE FROM Scans
+    ''');
+    return res;
+  }
+
+  // ----- * ----- * ----- * -----
+  Future<int> deleteScan(int id) async {
+  final db = await database;
+  final res = await db.delete(
+    'Scans',
+    where: 'id = ?',
+    whereArgs: [id],
+  );
+
+  return res;
+  }
+  // ----- * ----- * ----- * -----
 }
