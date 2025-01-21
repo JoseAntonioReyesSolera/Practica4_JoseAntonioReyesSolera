@@ -1,12 +1,35 @@
-import 'package:flutter/material.dart';
-import 'package:qr_scan_joseantonioreyes/providers/scan_list_provider.dart';
-import 'package:qr_scan_joseantonioreyes/widgets/scan_tiles.dart';
+import 'dart:async';
 
-class MapaScreen extends StatelessWidget {
-  const MapaScreen({Key? key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:qr_scan_joseantonioreyes/models/scan_model.dart';
+
+class MapasScreen extends StatefulWidget {
+  const MapasScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MapasScreen> createState() => _MapasScreenState();
+}
+
+class _MapasScreenState extends State<MapasScreen> {
+  Completer<GoogleMapController> _controller = Completer();
 
   @override
   Widget build(BuildContext context) {
-    return ScanTiles(tipus: 'geo');
+    final CameraPosition _puntInicial = CameraPosition(
+      target: LatLng(47, -122),
+      zoom: 14.4746,
+    );
+    final ScanModel scan =
+        ModalRoute.of(context)!.settings.arguments as ScanModel;
+    return Scaffold(
+      body: GoogleMap(
+        mapType: MapType.hybrid,
+        initialCameraPosition: _puntInicial,
+        onMapCreated: (GoogleMapController controller) {
+          _controller.complete(controller);
+        },
+      ),
+    );
   }
 }
