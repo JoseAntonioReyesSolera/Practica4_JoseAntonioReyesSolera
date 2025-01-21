@@ -36,7 +36,7 @@ class _MapaScreenState extends State<MapaScreen> {
       appBar: AppBar(
         title: Text('Mapa'),
         centerTitle: true,
-        backgroundColor: Colors.purple,
+        backgroundColor: Colors.deepPurple,
       ),
       body: Stack(
         children: [
@@ -61,7 +61,7 @@ class _MapaScreenState extends State<MapaScreen> {
                 controller.animateCamera(
                     CameraUpdate.newCameraPosition(_puntInicial));
               },
-              backgroundColor: Colors.purple,
+              backgroundColor: Colors.deepPurple,
               child: Icon(Icons.center_focus_strong, color: Colors.white),
             ),
           ),
@@ -77,7 +77,7 @@ class _MapaScreenState extends State<MapaScreen> {
                           : MapType.hybrid;
                     });
                   },
-                  backgroundColor: Colors.purple,
+                  backgroundColor: Colors.deepPurple,
                   child: Icon(Icons.map, color: Colors.white),
                 ),)
           // ----- * ----- * ----- * -----
