@@ -1,23 +1,24 @@
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:qr_scan_joseantonioreyes/models/scan_model.dart';
 
-class MapasScreen extends StatefulWidget {
-  const MapasScreen({Key? key}) : super(key: key);
+class MapaScreen extends StatefulWidget {
+  const MapaScreen({Key? key}) : super(key: key);
 
   @override
-  State<MapasScreen> createState() => _MapasScreenState();
+  State<MapaScreen> createState() => _MapaScreenState();
 }
 
-class _MapasScreenState extends State<MapasScreen> {
+class _MapaScreenState extends State<MapaScreen> {
   Completer<GoogleMapController> _controller = Completer();
 
   @override
   Widget build(BuildContext context) {
     final CameraPosition _puntInicial = CameraPosition(
-      target: LatLng(47, -122),
+      target: LatLng(37.43296265331129, -122.08832357078792),
       zoom: 14.4746,
     );
     final ScanModel scan =
