@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_scan_joseantonioreyes/providers/scan_list_provider.dart';
 import 'package:qr_scan_joseantonioreyes/util/utils.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ScanTiles extends StatelessWidget {
   final String tipus;

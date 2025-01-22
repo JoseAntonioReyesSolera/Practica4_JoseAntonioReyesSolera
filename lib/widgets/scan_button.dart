@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_scan_joseantonioreyes/models/scan_model.dart';
-import 'package:qr_scan_joseantonioreyes/providers/db_provider.dart';
 import 'package:qr_scan_joseantonioreyes/providers/scan_list_provider.dart';
 import 'package:qr_scan_joseantonioreyes/util/utils.dart';
 
@@ -70,7 +69,10 @@ class ScanButton extends StatelessWidget {
               ),
             );
           },
-        );
+        ).then((_) {
+          // Aquí cerramos la cámara cuando se cierra el diálogo.
+          cameraController.dispose();
+        });
       },
     );
   }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qr_scan_joseantonioreyes/models/scan_model.dart';
-import 'package:qr_scan_joseantonioreyes/providers/db_provider.dart';
 import 'package:qr_scan_joseantonioreyes/providers/scan_list_provider.dart';
 import 'package:qr_scan_joseantonioreyes/providers/ui_provider.dart';
 import 'package:qr_scan_joseantonioreyes/screens/screens.dart';
